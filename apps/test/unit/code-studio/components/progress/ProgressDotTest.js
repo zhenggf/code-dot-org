@@ -270,7 +270,8 @@ describe('ProgressDot component tests', () => {
           <ProgressDot
             level={{
               icon: 'fa-video-camera',
-              kind: LevelKind.named_level
+              name: 'I have a name',
+              kind: LevelKind.puzzle
             }}
             status={LevelStatus.not_tried}
             courseOverviewPage={true}
@@ -287,7 +288,8 @@ describe('ProgressDot component tests', () => {
           <ProgressDot
             level={{
               icon: undefined,
-              kind: LevelKind.named_level
+              name: 'I have a name',
+              kind: LevelKind.puzzle
             }}
             status={LevelStatus.not_tried}
             courseOverviewPage={true}
@@ -304,7 +306,8 @@ describe('ProgressDot component tests', () => {
           <ProgressDot
             level={{
               icon: 'fa-video-camera',
-              kind: LevelKind.named_level
+              name: 'I have a name',
+              kind: LevelKind.puzzle
             }}
             status={LevelStatus.not_tried}
             courseOverviewPage={/* false implies this is header progress */false}
@@ -323,7 +326,8 @@ describe('ProgressDot component tests', () => {
           <ProgressDot
             level={{
               icon: undefined,
-              kind: LevelKind.named_level
+              name: 'I have a name',
+              kind: LevelKind.puzzle
             }}
             status={LevelStatus.not_tried}
             courseOverviewPage={true}
@@ -340,7 +344,8 @@ describe('ProgressDot component tests', () => {
           <ProgressDot
             level={{
               icon: undefined,
-              kind: LevelKind.named_level
+              name: 'I have a name',
+              kind: LevelKind.puzzle
             }}
             status={LevelStatus.not_tried}
             courseOverviewPage={/* false implies this is header progress */false}
@@ -421,23 +426,6 @@ describe('ProgressDot component tests', () => {
         const result = renderer.getRenderOutput();
         expect(result.props.children[0].props.className).to.equal('fa fa-lock');
       });
-
-      it('does not show a locked icon on header when locked', () => {
-        renderer.render(
-          <ProgressDot
-            level={{
-              icon: undefined,
-              kind: LevelKind.puzzle
-            }}
-            status={LevelStatus.locked}
-            courseOverviewPage={/* false implies this is header progress */false}
-            saveAnswersBeforeNavigation={false}
-          />
-        );
-
-        const result = renderer.getRenderOutput();
-        expect(result.props.children[0].props.className).to.equal('');
-      });
     });
 
     describe('assessment levels', () => {
@@ -445,7 +433,7 @@ describe('ProgressDot component tests', () => {
         renderer.render(
           <ProgressDot
             level={{
-              icon: undefined,
+              icon: 'fa-list-ol',
               kind: LevelKind.assessment
             }}
             status={LevelStatus.not_tried}
@@ -455,7 +443,8 @@ describe('ProgressDot component tests', () => {
         );
 
         const result = renderer.getRenderOutput();
-        expect(result.props.children[0].props.className).to.equal('');
+        expect(result.props.children[0].type).to.equal('div');
+        expect(result.props.children[0].props.className).to.equal(undefined);
       });
 
       it('has no icon in header', () => {

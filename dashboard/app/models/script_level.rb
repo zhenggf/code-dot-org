@@ -177,11 +177,21 @@ class ScriptLevel < ActiveRecord::Base
     build_script_level_path(self)
   end
 
+  def icon
+    # Assessment levels can be of many different level types (i.e. multiple choice,
+    # blockly, etc.). Regardless of the underlying level type, we want them to
+    # have their own icon. If not an assessment, let the underlying level type
+    # continue to own which icon we use.
+    if assessment
+      'fa-list-ol'
+    else
+      level.icon
+    end
+  end
+
   def summarize
     if level.unplugged?
       kind = 'unplugged'
-    elsif named_level
-      kind = 'named_level'
     elsif assessment
       kind = 'assessment'
     else
@@ -199,12 +209,12 @@ class ScriptLevel < ActiveRecord::Base
       activeId: oldest_active_level.id,
       position: position,
       kind: kind,
-      icon: level.icon,
+      icon: icon,
       title: level_display_text,
       url: build_script_level_url(self)
     }
 
-    if kind == 'named_level'
+    if named_level
       summary[:name] = level.display_name || level.name
     end
 
