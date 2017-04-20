@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417182609) do
+ActiveRecord::Schema.define(version: 20170420055319) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "user_id"
@@ -472,6 +472,7 @@ ActiveRecord::Schema.define(version: 20170417182609) do
     t.datetime "order_status_changed_at"
     t.string   "tracking_id"
     t.string   "tracking_url"
+    t.integer  "retryable_error_count"
     t.index ["pd_enrollment_id"], name: "index_pd_workshop_material_orders_on_pd_enrollment_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_pd_workshop_material_orders_on_user_id", unique: true, using: :btree
   end

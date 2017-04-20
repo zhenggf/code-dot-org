@@ -24,6 +24,7 @@
 #  order_status_changed_at      :datetime
 #  tracking_id                  :string(255)
 #  tracking_url                 :string(255)
+#  retryable_error_count        :integer
 #
 # Indexes
 #
