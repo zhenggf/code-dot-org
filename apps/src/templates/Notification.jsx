@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import color from "@cdo/apps/util/color";
 import FontAwesome from '@cdo/apps/templates/FontAwesome';
-import ProgressButton from "./progress/ProgressButton";
+import Button from "./progress/Button";
 
 const NotificationType = {
   information: 'information',
@@ -140,9 +140,9 @@ const Notification = React.createClass({
           </div>
         </div>
         {buttonText && (
-          <ProgressButton
+          <Button
             href={buttonLink}
-            color={ProgressButton.ButtonColor.gray}
+            color={Button.ButtonColor.gray}
             text={buttonText}
             style={styles.button}
           />

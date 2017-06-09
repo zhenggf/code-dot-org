@@ -37,7 +37,7 @@ describe('ProjectAppTypeArea', () => {
         />
       );
       expect(wrapper.find('ProjectCard')).to.have.length(12);
-      expect(wrapper.find('ProgressButton').filter('[text="View more"]')).to.have.length(1);
+      expect(wrapper.find('Button').filter('[text="View more"]')).to.have.length(1);
     });
 
     it('displays more projects when View More is pressed', () => {
@@ -57,39 +57,39 @@ describe('ProjectAppTypeArea', () => {
         />
       );
       expect(wrapper.find('ProjectCard')).to.have.length(12);
-      let viewMoreWrapper = wrapper.find('ProgressButton').filter('[text="View more"]');
+      let viewMoreWrapper = wrapper.find('Button').filter('[text="View more"]');
       expect(viewMoreWrapper).to.have.length(1);
 
       // Each click shows 12 more projects.
       viewMoreWrapper.simulate('click');
       expect(wrapper.find('ProjectCard')).to.have.length(24);
-      viewMoreWrapper = wrapper.find('ProgressButton').filter('[text="View more"]');
+      viewMoreWrapper = wrapper.find('Button').filter('[text="View more"]');
       expect(viewMoreWrapper).to.have.length(1);
       expect(onFetch).not.to.have.been.called;
 
       // Requests more from the server once all projects are displayed.
       viewMoreWrapper.simulate('click');
       expect(wrapper.find('ProjectCard')).to.have.length(30);
-      viewMoreWrapper = wrapper.find('ProgressButton').filter('[text="View more"]');
+      viewMoreWrapper = wrapper.find('Button').filter('[text="View more"]');
       expect(onFetch).to.have.been.calledWith('applab');
       expect(viewMoreWrapper).to.have.length(1);
 
       // Displays additional projects returned from the server.
       wrapper.setProps({projectList: generateFakeProjects(40, 'applab')});
       expect(wrapper.find('ProjectCard')).to.have.length(36);
-      viewMoreWrapper = wrapper.find('ProgressButton').filter('[text="View more"]');
+      viewMoreWrapper = wrapper.find('Button').filter('[text="View more"]');
       expect(viewMoreWrapper).to.have.length(1);
 
       // Tries to fetch more projects from the server again.
       viewMoreWrapper.simulate('click');
       expect(wrapper.find('ProjectCard')).to.have.length(40);
-      viewMoreWrapper = wrapper.find('ProgressButton').filter('[text="View more"]');
+      viewMoreWrapper = wrapper.find('Button').filter('[text="View more"]');
       expect(viewMoreWrapper).to.have.length(1);
       expect(onFetch).to.have.been.calledTwice;
 
       // Hides the View More button when no additional projects are found.
       wrapper.setProps({hasOlderProjects: false});
-      viewMoreWrapper = wrapper.find('ProgressButton').filter('[text="View more"]');
+      viewMoreWrapper = wrapper.find('Button').filter('[text="View more"]');
       expect(viewMoreWrapper).to.have.length(0);
     });
   });

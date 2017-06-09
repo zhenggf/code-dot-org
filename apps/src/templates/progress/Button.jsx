@@ -1,6 +1,5 @@
 /**
- * New style button. Eventually we'd like to have this used more broadly (at which
- * point it should be renamed to something more generic)
+ * This is our standard Button to be used going forward.
  * This particular button is designed to operate in contexts where we have a solid
  * background. When we're a button on top of an image, we may want something different.
  */
@@ -112,7 +111,7 @@ const styles = {
   },
 };
 
-const ProgressButton = React.createClass({
+const Button = React.createClass({
   propTypes: {
     href: PropTypes.string,
     text: PropTypes.string.isRequired,
@@ -152,7 +151,7 @@ const ProgressButton = React.createClass({
   }
 });
 
-ProgressButton.ButtonColor = ButtonColor;
-ProgressButton.ButtonSize = ButtonSize;
+Button.ButtonColor = ButtonColor;
+Button.ButtonSize = ButtonSize;
 
-export default Radium(ProgressButton);
+export default Radium(Button);

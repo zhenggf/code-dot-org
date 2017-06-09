@@ -5,7 +5,7 @@
 
 import React from 'react';
 import color from "../util/color";
-import ProgressButton from './progress/ProgressButton';
+import Button from './progress/Button';
 import i18n from "@cdo/locale";
 
 const styles = {
@@ -65,9 +65,9 @@ const HeaderBanner = React.createClass({
             <div style={styles.bannerDescription}>
               {description}
             </div>
-            <ProgressButton
+            <Button
               href= "/users/sign_up"
-              color={ProgressButton.ButtonColor.gray}
+              color={Button.ButtonColor.gray}
               text={i18n.createAccount()}
               style={styles.button}
             />

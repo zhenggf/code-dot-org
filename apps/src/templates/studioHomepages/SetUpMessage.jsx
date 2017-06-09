@@ -1,7 +1,7 @@
 import React from 'react';
 import i18n from "@cdo/locale";
 import color from "../../util/color";
-import ProgressButton from "../progress/ProgressButton";
+import Button from "../progress/Button";
 
 const styles = {
   section: {
@@ -51,9 +51,9 @@ const SetUpMessage = React.createClass({
           <div style={styles.description}>
             {i18n.assignACourse()}
           </div>
-          <ProgressButton
+          <Button
             href="/courses"
-            color={ProgressButton.ButtonColor.gray}
+            color={Button.ButtonColor.gray}
             text={i18n.viewCourses()}
             style={styles.button}
           />
@@ -69,9 +69,9 @@ const SetUpMessage = React.createClass({
           <div style={styles.description}>
             {i18n.createNewClassroom()}
           </div>
-          <ProgressButton
+          <Button
             href={sectionsUrl}
-            color={ProgressButton.ButtonColor.gray}
+            color={Button.ButtonColor.gray}
             text={i18n.createSection()}
             style={styles.button}
           />

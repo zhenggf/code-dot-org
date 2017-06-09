@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import ProjectCard from './ProjectCard';
 import {projectPropType} from './projectConstants';
 import color from "../../util/color";
-import ProgressButton from "../progress/ProgressButton";
+import Button from "../progress/Button";
 
 const styles = {
   grid: {
@@ -122,17 +122,17 @@ const ProjectAppTypeArea = React.createClass({
       <div style={{float: "right", marginRight: 22}}>
         {
           showViewMore &&
-          <ProgressButton
+          <Button
             onClick={this.loadMore}
-            color={ProgressButton.ButtonColor.gray}
+            color={Button.ButtonColor.gray}
             icon="plus-circle"
             text="View more"
             style={{marginRight: 20}}
           />
         }
-        <ProgressButton
+        <Button
           href="#top"
-          color={ProgressButton.ButtonColor.gray}
+          color={Button.ButtonColor.gray}
           icon="chevron-circle-up"
           text="Back to top"
         />
