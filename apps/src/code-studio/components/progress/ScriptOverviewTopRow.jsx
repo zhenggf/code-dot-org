@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import SectionSelector from './SectionSelector';
 import i18n from '@cdo/locale';
-import Button from '@cdo/apps/templates/progress/Button';
+import Button from '@cdo/apps/templates/Button';
 import ProgressDetailToggle from '@cdo/apps/templates/progress/ProgressDetailToggle';
 import { ViewType } from '@cdo/apps/code-studio/stageLockRedux';
 

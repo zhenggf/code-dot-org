@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import color from "@cdo/apps/util/color";
 import i18n from '@cdo/locale';
-import Button from '../progress/Button';
+import Button from '../Button';
 
 const styles = {
   main: {

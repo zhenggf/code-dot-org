@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import color from "@cdo/apps/util/color";
 import i18n from "@cdo/locale";
 import ProgressDetailToggle from "@cdo/apps/templates/progress/ProgressDetailToggle";
-import Button from '@cdo/apps/templates/progress/Button';
+import Button from '@cdo/apps/templates/Button';
 
 const styles = {
   main: {

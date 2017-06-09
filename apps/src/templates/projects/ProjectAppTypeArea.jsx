@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import ProjectCard from './ProjectCard';
 import {projectPropType} from './projectConstants';
 import color from "../../util/color";
-import Button from "../progress/Button";
+import Button from "../Button";
 
 const styles = {
   grid: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import i18n from "@cdo/locale";
 import color from "../../util/color";
-import Button from "../progress/Button";
+import Button from "../Button";
 
 const styles = {
   section: {

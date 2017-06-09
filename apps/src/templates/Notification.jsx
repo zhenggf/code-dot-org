@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Radium from 'radium';
 import color from "@cdo/apps/util/color";
 import FontAwesome from '@cdo/apps/templates/FontAwesome';
-import Button from "./progress/Button";
+import Button from "./Button";
 
 const NotificationType = {
   information: 'information',

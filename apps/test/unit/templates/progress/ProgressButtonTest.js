@@ -1,7 +1,7 @@
 import { assert } from '../../../util/configuredChai';
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from '@cdo/apps/templates/progress/Button';
+import Button from '@cdo/apps/templates/Button';
 import color from "@cdo/apps/util/color";
 
 describe('Button', () => {

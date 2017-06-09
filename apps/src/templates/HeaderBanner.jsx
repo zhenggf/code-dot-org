@@ -5,7 +5,7 @@
 
 import React from 'react';
 import color from "../util/color";
-import Button from './progress/Button';
+import Button from './Button';
 import i18n from "@cdo/locale";
 
 const styles = {

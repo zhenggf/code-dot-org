@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../progress/Button';
+import Button from '../Button';
 import color from "../../util/color";
 
 const styles = {

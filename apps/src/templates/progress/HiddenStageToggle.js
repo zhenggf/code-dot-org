@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import i18n from '@cdo/locale';
 
 const styles = {

@@ -8,7 +8,7 @@ import UiTips from '@cdo/apps/templates/studioHomepages/UiTips';
 import color from "../../util/color";
 import shapes from './shapes';
 import ProtectedStatefulDiv from '../ProtectedStatefulDiv';
-import Button from '@cdo/apps/templates/progress/Button';
+import Button from '@cdo/apps/templates/Button';
 import i18n from "@cdo/locale";
 
 const styles = {
