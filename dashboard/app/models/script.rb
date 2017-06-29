@@ -839,6 +839,7 @@ class Script < ActiveRecord::Base
   def self.clear_cache
     # only call this in a test!
     @@script_cache = nil
+    Rails.cache.delete(SCRIPT_CACHE_KEY)
   end
 
   def localized_title

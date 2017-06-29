@@ -128,6 +128,12 @@ class Course < ApplicationRecord
   @@course_cache = nil
   COURSE_CACHE_KEY = 'course-cache'.freeze
 
+  def self.clear_cache
+    # only call this in a test!
+    @@course_cache = nil
+    Rails.cache.delete(COURSE_CACHE_KEY)
+  end
+
   def self.should_cache?
     return false if Rails.application.config.levelbuilder_mode
     ENV['UNIT_TEST'] || ENV['CI']

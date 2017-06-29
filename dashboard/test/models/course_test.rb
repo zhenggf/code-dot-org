@@ -3,10 +3,15 @@ require 'test_helper'
 class CourseTest < ActiveSupport::TestCase
   self.use_transactional_test_case = true
 
+  setup_all do
+    # Ensure we don't have a course cache poluted by other tests
+    Course.clear_cache
+  end
+
   class CachingTests < ActiveSupport::TestCase
     def populate_cache_and_disconnect_db
       Course.stubs(:should_cache?).returns true
-      @@course_cache ||= Course.course_cache_to_cache
+      Course.course_cache_to_cache
       Course.course_cache_from_cache
 
       # NOTE: ActiveRecord collection association still references an active DB connection,
@@ -16,7 +21,7 @@ class CourseTest < ActiveSupport::TestCase
     end
 
     test "get_from_cache uses cache" do
-      course = create(:course, name: 'acourse')
+      course = create(:course)
       # Ensure cache is populated with this course by name and id
       Course.get_from_cache(course.name)
       Course.get_from_cache(course.id)
@@ -27,10 +32,10 @@ class CourseTest < ActiveSupport::TestCase
 
       # Uncached find should raise because db was disconnected
       assert_raises do
-        Course.find_by_name('acourse')
+        Course.find_by_name(course.name)
       end
 
-      assert_equal uncached_course, Course.get_from_cache('acourse')
+      assert_equal uncached_course, Course.get_from_cache(course.name)
       assert_equal uncached_course, Course.get_from_cache(course.id)
     end
   end

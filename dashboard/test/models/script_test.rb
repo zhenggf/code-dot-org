@@ -13,12 +13,15 @@ class ScriptTest < ActiveSupport::TestCase
     @levels = (1..5).map {|n| create(:level, name: "Level #{n}", game: @game)}
 
     Rails.application.config.stubs(:levelbuilder_mode).returns false
+
+    # Ensure we don't a cache poluted by other tests
+    Course.clear_cache
+    Script.clear_cache
   end
 
   def populate_cache_and_disconnect_db
     Script.stubs(:should_cache?).returns true
-    # Only need to populate cache once per test-suite run
-    @@script_cached ||= Script.script_cache_to_cache
+    Script.script_cache_to_cache
     Script.script_cache_from_cache
 
     # NOTE: ActiveRecord collection association still references an active DB connection,
