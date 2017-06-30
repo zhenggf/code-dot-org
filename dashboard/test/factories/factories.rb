@@ -1,5 +1,5 @@
-require 'cdo/activity_constants'
 
+require 'cdo/activity_constants'
 FactoryGirl.allow_class_lookup = false
 
 FactoryGirl.define do
@@ -669,5 +669,10 @@ FactoryGirl.define do
   factory :regional_partners_school_district do
     association :school_district
     association :regional_partner
+  end
+
+  factory :teacher_note do
+    association :user, factory: :teacher
+    content 'this is my note'
   end
 end

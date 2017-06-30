@@ -14,5 +14,13 @@
 #
 
 class TeacherNote < ApplicationRecord
-  
+  belongs_to :user
+
+  validates_presence_of :user_id
+  validate :user_is_teacher, if: -> {user.present?}
+  def user_is_teacher
+    unless user.teacher?
+      errors.add :user_id, 'must be a teacher'
+    end
+  end
 end
