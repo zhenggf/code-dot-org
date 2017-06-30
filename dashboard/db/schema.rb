@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626160941) do
+ActiveRecord::Schema.define(version: 20170630201041) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "user_id"
@@ -847,6 +847,14 @@ ActiveRecord::Schema.define(version: 20170626160941) do
     t.datetime "updated_at",               null: false
     t.index ["kind"], name: "index_survey_results_on_kind", using: :btree
     t.index ["user_id"], name: "index_survey_results_on_user_id", using: :btree
+  end
+
+  create_table "teacher_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "user_id",                  null: false
+    t.text     "content",    limit: 65535
+    t.index ["user_id"], name: "index_teacher_notes_on_user_id", using: :btree
   end
 
   create_table "teacher_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
