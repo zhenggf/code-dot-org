@@ -27,4 +27,24 @@ class MakerController < ApplicationController
 
     render json: {eligible: application.eligible_unit_6_intention?}
   end
+
+  def school
+    school_id = params.require(:nces)
+
+    application = CircuitPlaygroundDiscountApplication.find_by_studio_person_id(current_user.studio_person_id)
+    return head :not_found unless application
+    return head :forbidden unless application.eligible_unit_6_intention?
+
+    school = School.find(school_id)
+    return head :bad_request unless school
+
+    current_school_id = current_user.try(:school_info).try(:school_id)
+    if (school_id != current_school_id)
+      current_user.update!(school_info: SchoolInfo.find_by_school_id(school_id))
+    end
+
+    application.update!(has_confirmed_school: true, full_discount: school.high_needs?)
+
+    render json: {foo: 'bar'}
+  end
 end

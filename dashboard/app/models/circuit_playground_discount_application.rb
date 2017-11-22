@@ -71,6 +71,7 @@ class CircuitPlaygroundDiscountApplication < ApplicationRecord
       # This will be a number from 1-5 (representing which radio button) was selected,
       # or nil if no selection yet
       unit_6_intention: application.try(:unit_6_intention),
+      school_id: user.try(:school_info).try(:school_id),
       has_confirmed_school: application.try(:has_confirmed_school) || false,
       # true/false once has_submitted_school is true
       # false implies partial discount

@@ -11,33 +11,16 @@ export default class EligibilityChecklist extends Component {
     statusPD: PropTypes.oneOf(Object.values(Status)).isRequired,
     statusStudentCount: PropTypes.oneOf(Object.values(Status)).isRequired,
     unit6Intention: PropTypes.string,
+    schoolId: PropTypes.string,
   };
 
   state = {
     statusYear: Status.UNKNOWN,
     yearChoice: null, // stores the teaching-year choice until submitted
     submitting: false,
+    confirmingSchool: false,
     displayDiscountAmount: false,
-    submission: {
-      name: '',
-      email: '',
-      role: '',
-      country: 'United States',
-      hoc: '',
-      nces: '',
-      schoolName: '',
-      schoolCity: '',
-      schoolState: '',
-      schoolZip: '',
-      schoolType: '',
-      afterSchool: '',
-      tenHours: '',
-      twentyHours: '',
-      otherCS: false,
-      followUpFrequency: '',
-      followUpMore: '',
-      acceptedPledge: false
-    },
+    schoolId: null,
     errors: {
       invalidEmail: false
     }
@@ -53,7 +36,8 @@ export default class EligibilityChecklist extends Component {
         ...this.state,
         yearChoice: props.unit6Intention,
         statusYear: (props.unit6Intention === 'yes1718' ||
-          props.unit6Intention === 'yes1819') ? Status.SUCCEEDED : Status.FAILED
+          props.unit6Intention === 'yes1819') ? Status.SUCCEEDED : Status.FAILED,
+        schoolId: props.schoolId
       };
     }
   }
@@ -80,26 +64,19 @@ export default class EligibilityChecklist extends Component {
   }
 
   handleDropdownChange = (field, event) => {
-    this.setState({
-      submission: {
-        ...this.state.submission,
-        [field]: event ? event.value : ''
-      }
-    });
+    if (field === 'nces') {
+      this.setState({schoolId: event.value});
+    }
   }
 
-  handleNotFoundChange = (field, event) => {
-    this.setState({
-      submission: {
-        ...this.state.submission,
-        [field]: event.target.value
-      }
-    });
-  }
-
-
-  displayDiscountAmount = () => {
-    this.setState({displayDiscountAmount: true});
+  handleClickConfirmSchool = () => {
+    this.setState({confirmingSchool: true});
+    setTimeout(() => {
+      this.setState({
+        displayDiscountAmount: true,
+        confirmingSchool: false,
+      });
+    }, 4000);
   }
 
   handleChangeIntention = event => {
@@ -107,7 +84,7 @@ export default class EligibilityChecklist extends Component {
   }
 
   render() {
-    const {submission, errors} = this.state;
+    const {schoolId, errors} = this.state;
     return (
       <div>
         <h2>
@@ -187,21 +164,29 @@ export default class EligibilityChecklist extends Component {
         }
         {this.state.statusYear === Status.SUCCEEDED &&
           <div>
+            {/* TODO: we dont want text "click here to provide details" when school
+              isn't found in this particular context
+              TODO: I think we also want to hide the dropdown after we've submitted
+              a school, since we can't just disable it.
+              TODO: Likely makes sense to split this component up into a few smaller ones
+            */}
             <SchoolAutocompleteDropdownWithLabel
               setField={this.handleDropdownChange}
-              value={submission.nces}
+              value={schoolId}
               showErrorMsg={errors.nces}
+              disabled={this.state.confirmingSchool || this.state.displayDiscountAmount}
             />
             <br/>
-            {this.state.submission.nces !== "-1" && (
+            {schoolId !== "-1" && !this.state.displayDiscountAmount && (
               <Button
                 color="orange"
-                text={i18n.confirmSchool()}
-                onClick={this.displayDiscountAmount}
+                text={this.state.confirmingSchool ? i18n.confirming() : i18n.confirmSchool()}
+                onClick={this.handleClickConfirmSchool}
                 hidden={this.state.displayDiscountAmount}
+                disabled={this.state.confirmingSchool}
               />
             )}
-            {this.state.submission.nces === "-1" && (
+            {schoolId === "-1" && (
               <div>{i18n.eligibilitySchoolUnknown()} <b>{i18n.contactToContinue()}</b></div>
             )}
             {this.state.displayDiscountAmount  &&

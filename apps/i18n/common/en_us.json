@@ -136,6 +136,7 @@
   "completed": "Completed",
   "completedWithoutRecommendedBlock": "Congratulations! You completed Puzzle {puzzleNumber}. (But you could use a different block for stronger code.)",
   "concept": "Concept",
+  "confirming": "Confirming...",
   "confirmSchool": "Confirm School",
   "congratsCertificateHeading": "You Earned a Certificate of Completion",
   "congratsCertificatePersonalize": "Personalize your certificate",
