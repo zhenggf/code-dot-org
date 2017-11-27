@@ -90,7 +90,7 @@ const styles = {
   }
 };
 
-export const UnconnectedHeaderBanner = React.createClass({
+const HeaderBanner = React.createClass({
   propTypes: {
     headingText: PropTypes.string,
     subHeadingText: PropTypes.string,
@@ -104,7 +104,7 @@ export const UnconnectedHeaderBanner = React.createClass({
     const {short, headingText, subHeadingText, description, responsiveSize} = this.props;
 
     let headerStyle, headingStyle, subHeadingStyle, descriptionStyle;
-    if (responsiveSize === 'xs') {
+    if (responsiveSize !== 'xs') {
       headerStyle = short ? styles.headerBannerShortResponsive : styles.headerBannerResponsive;
       headingStyle = short ? styles.bannerHeadingShortResponsive : styles.bannerHeadingResponsive;
       subHeadingStyle = styles.bannerSubHeadingResponsive;
@@ -137,4 +137,4 @@ export const UnconnectedHeaderBanner = React.createClass({
 
 export default connect(state => ({
   responsiveSize: state.responsive.responsiveSize,
-}))(UnconnectedHeaderBanner);
+}))(HeaderBanner);
