@@ -107,13 +107,13 @@ module Rack
     end
 
     class DeflateStream
-      DEFLATE_ARGS ||= [
+      DEFLATE_ARGS = [
         Zlib::DEFAULT_COMPRESSION,
         # drop the zlib header which causes both Safari and IE to choke
         -Zlib::MAX_WBITS,
         Zlib::DEF_MEM_LEVEL,
         Zlib::DEFAULT_STRATEGY
-      ]
+      ].freeze
 
       def initialize(body)
         @body = body
