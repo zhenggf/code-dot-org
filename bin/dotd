@@ -15,6 +15,7 @@ require_relative '../lib/cdo/infra_test_topic'
 require_relative '../lib/cdo/infra_production_topic'
 require_relative '../lib/cdo/github'
 require_relative '../lib/cdo/honeybadger'
+require_relative '../lib/cdo/metrics_helper'
 include CdoCli
 
 LOG_FILE = "#{Dir.tmpdir}/dotd.log".freeze
@@ -82,6 +83,7 @@ end
 def mark_dtt_green
   DevelopersTopic.set_dtt 'yes'
   InfraTestTopic.set_green_commit GitHub.sha('test')
+  Metrics.write_metrics('dtt', nil, 1)
 
   puts <<-EOS.unindent
 
