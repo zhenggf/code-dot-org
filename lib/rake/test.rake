@@ -263,12 +263,12 @@ namespace :test do
 
     task all_but_apps: all_tasks.reject {|t| t == :apps}
 
-    task all: all_tasks
+    multitask all: all_tasks
   end
 
   task changed: ['changed:all']
 
-  task all: [:apps, :dashboard, :pegasus, :shared, :lib]
+  multitask all: [:apps, :dashboard, :pegasus, :shared, :lib]
 end
 task test: ['test:changed']
 
