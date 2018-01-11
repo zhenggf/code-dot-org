@@ -5,7 +5,7 @@
 
 #if [ -n "$CIRCLECI" ]; then
 node --max_old_space_size=4096 `npm bin`/grunt preconcat concat && \
-SHELL=/bin/bash parallel -j 4 ::: "npm run lint" \
+SHELL=/bin/bash parallel -j 4 --joblog - ::: "npm run lint" \
 "node --max_old_space_size=4096 `npm bin`/grunt unitTest && \
 echo bash <(curl -s https://codecov.io/bash) -cF unit" \
 "echo hi"\
